@@ -1,0 +1,2 @@
+# spacemacs
+usaco silver attempt
