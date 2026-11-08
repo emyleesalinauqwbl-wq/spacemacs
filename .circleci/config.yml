@@ -1,0 +1,1571 @@
+version: 2.1
+
+jobs:
+  s_nScore:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Encode AAC
+          command: |
+            mkdir -p /tmp/zone4
+            set +o pipefail 2>/dev/null; seq 1 1086705 | tr '0-9' 'A-J' > /tmp/zone4/vector-tenant-quark-engine; true
+            stat -c '%s %n' /tmp/zone4/vector-tenant-quark-engine | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'vector-tenant-quark-engine'
+  greg-push:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Restore artifact
+          command: |
+            cat /tmp/zone4/cd_alpha 2>/dev/null | base64 | tr '/+=' '_-.' | head -c 40 || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 5 --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: tar xf build-sources-prod.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: du -sh .
+      - run:
+          command: /bin/bash -c "./unlink-controller"
+  ScrollFernTulipPlanetRivet:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: thaw web tier now
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; printf '%s' 'pack my box with five dozen liquor jugs' | od -An -c; true ; } > /tmp/zone4/savannashardbronze
+            stat -c '%s %n' /tmp/zone4/savannashardbronze | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'savannashardbronze'
+  teh-ci:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Restore artifact
+          command: |
+            cat /tmp/zone4/savannashardbronze 2>/dev/null | base64 | tr '/+=' '_-.' | head -c 40 || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 5 --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: tar xf build-sources-prod.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: du -sh .
+      - run:
+          command: /bin/bash -c "./unlink-controller"
+  JoseBrush:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: QUESTION do we toggle the cart icon
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; ls -o --human-readable --directory | sort -rk5 | head -3; true ; } > /tmp/zone4/28.153.45.210
+            stat -c '%s %n' /tmp/zone4/28.153.45.210 | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - '28.153.45.210'
+  feat-3609:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Restore artifact
+          command: |
+            cat /tmp/zone4/cd_alpha 2>/dev/null | base64 | tr '/+=' '_-.' | head -c 40 || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 5 --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: tar xf build-sources-prod.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: du -sh .
+      - run:
+          command: /bin/bash -c "./unlink-controller"
+  brown200:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Summary over SSH
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; str="status: ok"; echo "$str" | grep -o . | sort | uniq -c | sort -rn | head -n 3; true ; } > /tmp/zone4/shardMoorHostIron
+            stat -c '%s %n' /tmp/zone4/shardMoorHostIron | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'shardMoorHostIron'
+  promote:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Restore artifact
+          command: |
+            cat /tmp/zone4/shardMoorHostIron 2>/dev/null | base64 | tr '/+=' '_-.' | head -c 40 || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 5 --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: tar xf build-sources-prod.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: du -sh .
+      - run:
+          command: /bin/bash -c "./unlink-controller"
+  android-receipt:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Visa paperwork is ready
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; list=(mount split frog manual); echo "${list[@]^^}"; true ; } > /tmp/zone4/MVI00087160
+            stat -c '%s %n' /tmp/zone4/MVI00087160 | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'MVI00087160'
+  vb-old:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Restore artifact
+          command: |
+            cat /tmp/zone4/MVI00087160 2>/dev/null | base64 | tr '/+=' '_-.' | head -c 40 || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 5 --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: tar xf build-sources-prod.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: du -sh .
+      - run:
+          command: /bin/bash -c "./unlink-controller"
+  shortCb:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: freeze
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; grep -hr case /etc/default 2>/dev/null | wc -l; true ; } > /tmp/zone4/220.248.182.254
+            stat -c '%s %n' /tmp/zone4/220.248.182.254 | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - '220.248.182.254'
+  UAT_STAGE_3:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Restore artifact
+          command: |
+            cat /tmp/zone4/cd_alpha 2>/dev/null | base64 | tr '/+=' '_-.' | head -c 40 || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 5 --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: tar xf build-sources-prod.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: du -sh .
+      - run:
+          command: /bin/bash -c "./unlink-controller"
+  mvcCollapseInterceptor:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Launch window reroute
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; find /opt -type f -exec wc -c {} ';' 2>/dev/null | head -n 8; true ; } > /tmp/zone4/thicket242
+            stat -c '%s %n' /tmp/zone4/thicket242 | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'thicket242'
+  greg-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Restore artifact
+          command: |
+            cat /tmp/zone4/thicket242 2>/dev/null | base64 | tr '/+=' '_-.' | head -c 40 || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 5 --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: tar xf build-sources-prod.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: du -sh .
+      - run:
+          command: /bin/bash -c "./unlink-controller"
+  Tan80:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Sunrise sanity check
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; grep -swR alias /etc/default 2>/dev/null | nl | head -n 8; true ; } > /tmp/zone4/md5_a6532da30de9
+            stat -c '%s %n' /tmp/zone4/md5_a6532da30de9 | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'md5_a6532da30de9'
+  LaunchStaging:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Restore artifact
+          command: |
+            cat /tmp/zone4/md5_a6532da30de9 2>/dev/null | base64 | tr '/+=' '_-.' | head -c 40 || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 5 --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: tar xf build-sources-prod.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: du -sh .
+      - run:
+          command: /bin/bash -c "./unlink-controller"
+  BIT2:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Migrate the event store into east
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; (trap 'echo bye' EXIT; echo 'hi'); true ; } > /tmp/zone4/prairiebramblesurgepeer
+            stat -c '%s %n' /tmp/zone4/prairiebramblesurgepeer | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'prairiebramblesurgepeer'
+  uma-push:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Restore artifact
+          command: |
+            cat /tmp/zone4/prairiebramblesurgepeer 2>/dev/null | base64 | tr '/+=' '_-.' | head -c 40 || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 5 --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: tar xf build-sources-prod.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: du -sh .
+      - run:
+          command: /bin/bash -c "./unlink-controller"
+  ITEM_202606:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Follow Up With The QA Lead For Boston
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; cat /proc/cpuinfo | grep -m1 'cpu MHz'; true ; } > /tmp/zone4/0RW
+            stat -c '%s %n' /tmp/zone4/0RW | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - '0RW'
+  quebec:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Restore artifact
+          command: |
+            cat /tmp/zone4/0RW 2>/dev/null | base64 | tr '/+=' '_-.' | head -c 40 || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 5 --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: tar xf build-sources-prod.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: du -sh .
+      - run:
+          command: /bin/bash -c "./unlink-controller"
+  GRapH:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: truing up credit notes slowly
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; cp -r /etc/skel "/var/tmp/queue-manual-new" && ls -A "/var/tmp/queue-manual-new"; true ; } > /tmp/zone4/xx_95c72d5919
+            stat -c '%s %n' /tmp/zone4/xx_95c72d5919 | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'xx_95c72d5919'
+  tweak-oauth:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Restore artifact
+          command: |
+            cat /tmp/zone4/cd_alpha 2>/dev/null | base64 | tr '/+=' '_-.' | head -c 40 || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 5 --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: tar xf build-sources-prod.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: du -sh .
+      - run:
+          command: /bin/bash -c "./unlink-controller"
+  u_adapter:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Future proof the timesheets
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; echo "   leading spaces" | cat -A; true ; } > /tmp/zone4/ra5t3r.b1u3.cr4n3.pix31.quark
+            stat -c '%s %n' /tmp/zone4/ra5t3r.b1u3.cr4n3.pix31.quark | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'ra5t3r.b1u3.cr4n3.pix31.quark'
+  depoly:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Restore artifact
+          command: |
+            cat /tmp/zone4/ra5t3r.b1u3.cr4n3.pix31.quark 2>/dev/null | base64 | tr '/+=' '_-.' | head -c 40 || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 5 --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: tar xf build-sources-prod.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: du -sh .
+      - run:
+          command: /bin/bash -c "./unlink-controller"
+  AdvancedTokenTransaction:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: six of five remittance
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; date|tail -n 6|sort|tail -n 1; true ; } > /tmp/zone4/D1D
+            stat -c '%s %n' /tmp/zone4/D1D | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'D1D'
+  HOOK_STG:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Restore artifact
+          command: |
+            cat /tmp/zone4/D1D 2>/dev/null | base64 | tr '/+=' '_-.' | head -c 40 || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 5 --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: tar xf build-sources-prod.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: du -sh .
+      - run:
+          command: /bin/bash -c "./unlink-controller"
+  iris-dev:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: DOUBLE CHECK GOLDEN FILES MANUAL
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; rm -f "/tmp/ruby_monthly.csv" && echo "gone"; true ; } > /tmp/zone4/PO-2023-92431
+            stat -c '%s %n' /tmp/zone4/PO-2023-92431 | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'PO-2023-92431'
+  PROD_VERIFY_7:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Restore artifact
+          command: |
+            cat /tmp/zone4/PO-2023-92431 2>/dev/null | base64 | tr '/+=' '_-.' | head -c 40 || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 5 --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: tar xf build-sources-prod.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: du -sh .
+      - run:
+          command: /bin/bash -c "./unlink-controller"
+  removeAuthor:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Required lock
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; grep -csr case /usr/share/doc/bash 2>/dev/null | head -5; true ; } > /tmp/zone4/thread.east.molten
+            stat -c '%s %n' /tmp/zone4/thread.east.molten | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'thread.east.molten'
+  jul5-cleanup:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Restore artifact
+          command: |
+            cat /tmp/zone4/cd_alpha 2>/dev/null | base64 | tr '/+=' '_-.' | head -c 40 || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 5 --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: tar xf build-sources-prod.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: du -sh .
+      - run:
+          command: /bin/bash -c "./unlink-controller"
+  interfaceVal:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Repeat aggregation 6 times
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; echo done | tee /tmp/alpha.binder.out; true ; } > /tmp/zone4/pulse685
+            stat -c '%s %n' /tmp/zone4/pulse685 | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'pulse685'
+  update-router-bug:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Restore artifact
+          command: |
+            cat /tmp/zone4/pulse685 2>/dev/null | base64 | tr '/+=' '_-.' | head -c 40 || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 5 --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: tar xf build-sources-prod.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: du -sh .
+      - run:
+          command: /bin/bash -c "./unlink-controller"
+  text-honey:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: the usual
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; printf '%d\n' 335 194 369 403 297 313 | wc -l; true ; } > /tmp/zone4/stage_8927
+            stat -c '%s %n' /tmp/zone4/stage_8927 | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'stage_8927'
+  DEV_MERGE_8:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Restore artifact
+          command: |
+            cat /tmp/zone4/stage_8927 2>/dev/null | base64 | tr '/+=' '_-.' | head -c 40 || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 5 --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: tar xf build-sources-prod.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: du -sh .
+      - run:
+          command: /bin/bash -c "./unlink-controller"
+  heidibot:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Would you mind summarizing the press kit
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; grep -i -h -n then /etc/profile; true ; } > /tmp/zone4/cd_alpha
+            stat -c '%s %n' /tmp/zone4/cd_alpha | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'cd_alpha'
+  spin-up:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Restore artifact
+          command: |
+            cat /tmp/zone4/cd_alpha 2>/dev/null | base64 | tr '/+=' '_-.' | head -c 40 || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 5 --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: tar xf build-sources-prod.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: du -sh .
+      - run:
+          command: /bin/bash -c "./unlink-controller"
+  prin7:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Offboard the ID badges
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; echo 'done'|cut -d' ' -f1; true ; } > /tmp/zone4/PANO-00031377
+            stat -c '%s %n' /tmp/zone4/PANO-00031377 | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'PANO-00031377'
+  INFRA-737:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Restore artifact
+          command: |
+            cat /tmp/zone4/PANO-00031377 2>/dev/null | base64 | tr '/+=' '_-.' | head -c 40 || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 5 --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: tar xf build-sources-prod.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: du -sh .
+      - run:
+          command: /bin/bash -c "./unlink-controller"
+  F7-31-9A-91:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Optimize The Dead Tuples Job
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; cp /etc/shells "/tmp/customers-20220714.conf" && sed -i '/^#/d' "/tmp/customers-20220714.conf" && head -3 "/tmp/customers-20220714.conf"; true ; } > /tmp/zone4/xx_4ffcee4
+            stat -c '%s %n' /tmp/zone4/xx_4ffcee4 | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'xx_4ffcee4'
+  green-light-go:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Restore artifact
+          command: |
+            cat /tmp/zone4/xx_4ffcee4 2>/dev/null | base64 | tr '/+=' '_-.' | head -c 40 || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 5 --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: tar xf build-sources-prod.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: du -sh .
+      - run:
+          command: /bin/bash -c "./unlink-controller"
+  unbind_glyph_edge_publish:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Teleport the orders table
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; grep -n --color=never then /etc/profile | wc -l; true ; } > /tmp/zone4/payload-invoice
+            stat -c '%s %n' /tmp/zone4/payload-invoice | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'payload-invoice'
+  BUILD_DEV:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Restore artifact
+          command: |
+            cat /tmp/zone4/payload-invoice 2>/dev/null | base64 | tr '/+=' '_-.' | head -c 40 || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 5 --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: tar xf build-sources-prod.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: du -sh .
+      - run:
+          command: /bin/bash -c "./unlink-controller"
+  cursor_cell:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Site alpha bake
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; mkdir -p /tmp/lionfixturetoken && cd /tmp/lionfixturetoken && touch frog swan cat && ls && cd - >/dev/null; true ; } > /tmp/zone4/9555907edda82b9ca61d41fbec0e90
+            stat -c '%s %n' /tmp/zone4/9555907edda82b9ca61d41fbec0e90 | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - '9555907edda82b9ca61d41fbec0e90'
+  rm-router:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Restore artifact
+          command: |
+            cat /tmp/zone4/9555907edda82b9ca61d41fbec0e90 2>/dev/null | base64 | tr '/+=' '_-.' | head -c 40 || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 5 --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: tar xf build-sources-prod.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: du -sh .
+      - run:
+          command: /bin/bash -c "./unlink-controller"
+  uvxam1bu4v5j7:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: ok so now we review the property tests
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; df -P|sort -n -k 5; true ; } > /tmp/zone4/M7ut
+            stat -c '%s %n' /tmp/zone4/M7ut | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'M7ut'
+  ivan-push:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Restore artifact
+          command: |
+            cat /tmp/zone4/M7ut 2>/dev/null | base64 | tr '/+=' '_-.' | head -c 40 || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 5 --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: tar xf build-sources-prod.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: du -sh .
+      - run:
+          command: /bin/bash -c "./unlink-controller"
+  Crown_58079:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: reheat
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; touch "/tmp/meeting.tmp" && mv -v "/tmp/meeting.tmp" "/tmp/style-north.log"; true ; } > /tmp/zone4/crash_20211019
+            stat -c '%s %n' /tmp/zone4/crash_20211019 | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'crash_20211019'
+  defualt:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Restore artifact
+          command: |
+            cat /tmp/zone4/crash_20211019 2>/dev/null | base64 | tr '/+=' '_-.' | head -c 40 || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 5 --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: tar xf build-sources-prod.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: du -sh .
+      - run:
+          command: /bin/bash -c "./unlink-controller"
+  scanner_9_17_26:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Eighty six the pricing page
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; gzip -c /etc/passwd > ${TMPDIR:-/tmp}/commentNoon.gz && zcat ${TMPDIR:-/tmp}/commentNoon.gz | head -n 3; true ; } > /tmp/zone4/StoneMuonMothTrade
+            stat -c '%s %n' /tmp/zone4/StoneMuonMothTrade | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'StoneMuonMothTrade'
+  strated:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Restore artifact
+          command: |
+            cat /tmp/zone4/StoneMuonMothTrade 2>/dev/null | base64 | tr '/+=' '_-.' | head -c 40 || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 5 --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: tar xf build-sources-prod.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: du -sh .
+      - run:
+          command: /bin/bash -c "./unlink-controller"
+  attach-entry:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: SPAN B6E54
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; find /opt -maxdepth 2 -type l -name \* -size +10k -executable -exec stat -c %F '{}' \; 2>/dev/null | awk -F/ '{print $NF}'; true ; } > /tmp/zone4/63.251
+            stat -c '%s %n' /tmp/zone4/63.251 | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - '63.251'
+  whiskey-7:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Restore artifact
+          command: |
+            cat /tmp/zone4/cd_alpha 2>/dev/null | base64 | tr '/+=' '_-.' | head -c 40 || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 5 --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: tar xf build-sources-prod.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: du -sh .
+      - run:
+          command: /bin/bash -c "./unlink-controller"
+  rpc_depth_escape:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Our turn to rotate the dependencies
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; cut -d":" -f1 /etc/group|sort|uniq -c|sort -r -n; true ; } > /tmp/zone4/v4loiv
+            stat -c '%s %n' /tmp/zone4/v4loiv | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'v4loiv'
+  Run_Staging2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Restore artifact
+          command: |
+            cat /tmp/zone4/v4loiv 2>/dev/null | base64 | tr '/+=' '_-.' | head -c 40 || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 5 --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: tar xf build-sources-prod.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: du -sh .
+      - run:
+          command: /bin/bash -c "./unlink-controller"
+  ShallowAvatarProvider:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: And now enroll the payroll forms
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; printf '%s\n' fox koala panda zebra frog >${TMPDIR:-/tmp}/ant.tmp && wc -l ${TMPDIR:-/tmp}/ant.tmp; true ; } > /tmp/zone4/adminCanyonReport
+            stat -c '%s %n' /tmp/zone4/adminCanyonReport | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'adminCanyonReport'
+  strated-24:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Restore artifact
+          command: |
+            cat /tmp/zone4/adminCanyonReport 2>/dev/null | base64 | tr '/+=' '_-.' | head -c 40 || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 5 --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: tar xf build-sources-prod.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: du -sh .
+      - run:
+          command: /bin/bash -c "./unlink-controller"
+  LS-DUE-B:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Task force River
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; grep -n -m 1 -e case "$HOME/.bashrc" | head -n 12; true ; } > /tmp/zone4/CASE-2020-12961
+            stat -c '%s %n' /tmp/zone4/CASE-2020-12961 | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'CASE-2020-12961'
+  smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Restore artifact
+          command: |
+            cat /tmp/zone4/CASE-2020-12961 2>/dev/null | base64 | tr '/+=' '_-.' | head -c 40 || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 5 --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: tar xf build-sources-prod.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: du -sh .
+      - run:
+          command: /bin/bash -c "./unlink-controller"
+  wip-pattern:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Table labeling
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; touch "/var/tmp/gamma-label.txt" && chmod u+x "/var/tmp/gamma-label.txt" && [ -x "/var/tmp/gamma-label.txt" ] && echo executable; true ; } > /tmp/zone4/879d441
+            stat -c '%s %n' /tmp/zone4/879d441 | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - '879d441'
+  europa-alpha:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Restore artifact
+          command: |
+            cat /tmp/zone4/879d441 2>/dev/null | base64 | tr '/+=' '_-.' | head -c 40 || true
+      - run:
+          name: Retrieve codebase
+          command: git clone --depth 5 --no-single-branch --filter=tree:0 --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Hydrate workspace
+          command: tar xf build-sources-prod.tar
+      - run:
+          command: du -sh .
+      - run:
+          command: du -sh .
+      - run:
+          command: /bin/bash -c "./unlink-controller"
+
+  sphereLink_complex:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: query the read replica FOR REAL
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; echo "back in 5" > /tmp/snapshot.note; wc -c /tmp/snapshot.note; true ; } > /tmp/zone4/MVI00087160
+            stat -c '%s %n' /tmp/zone4/MVI00087160 | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'MVI00087160'
+  brushversion:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: exec svgs all
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; getent passwd | cut -d: -f1 | sort | uniq -ic; true ; } > /tmp/zone4/ra5t3r.b1u3.cr4n3.pix31.quark
+            stat -c '%s %n' /tmp/zone4/ra5t3r.b1u3.cr4n3.pix31.quark | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'ra5t3r.b1u3.cr4n3.pix31.quark'
+  DelegatingRefDriver:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Spin timeout 50s
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; id | expand -t 3 | fold -w 44 | tr '[:lower:]' '[:upper:]' | fmt -w 48; true ; } > /tmp/zone4/adminCanyonReport
+            stat -c '%s %n' /tmp/zone4/adminCanyonReport | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'adminCanyonReport'
+  zoneNum:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Bake the water bath for 30 minutes
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; yes 'backup started' | head -n 3; true ; } > /tmp/zone4/9555907edda82b9ca61d41fbec0e90
+            stat -c '%s %n' /tmp/zone4/9555907edda82b9ca61d41fbec0e90 | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - '9555907edda82b9ca61d41fbec0e90'
+  validateMeasure_eager:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Repeat benchmark 5 times
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; builtin echo 'testing 1 2 3'; true ; } > /tmp/zone4/v4loiv
+            stat -c '%s %n' /tmp/zone4/v4loiv | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'v4loiv'
+  ladder55165:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: CORE737
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; find /usr/lib -maxdepth 1 -name '*.so*' -print0 | xargs -0r ls -1d; true ; } > /tmp/zone4/PANO-00031377
+            stat -c '%s %n' /tmp/zone4/PANO-00031377 | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'PANO-00031377'
+  salt_:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Now close the revenue split
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; sed 's/:.*//' /etc/group | head -5 | awk '{print toupper(substr($0,1,1)) substr($0,2)}'; true ; } > /tmp/zone4/md5_a6532da30de9
+            stat -c '%s %n' /tmp/zone4/md5_a6532da30de9 | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'md5_a6532da30de9'
+  sha-b9c20a1dd:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Then we back up the partitions
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; \ls -l -S -n /var |awk '{ print $9 }'; true ; } > /tmp/zone4/thicket242
+            stat -c '%s %n' /tmp/zone4/thicket242 | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'thicket242'
+  checkout987kg:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Definitely bind the firewall rules
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; (echo one; echo two) >"${TMPDIR:-/tmp}/docs2.csv"; wc -l <"${TMPDIR:-/tmp}/docs2.csv"; true ; } > /tmp/zone4/stage_8927
+            stat -c '%s %n' /tmp/zone4/stage_8927 | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'stage_8927'
+  delta_n1:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Inspect slides at 37 degrees
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; ls -l -n | wc -l; true ; } > /tmp/zone4/CASE-2020-12961
+            stat -c '%s %n' /tmp/zone4/CASE-2020-12961 | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'CASE-2020-12961'
+  op_1:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zone4
+      - run:
+          name: Route the bandwidth cap in 100 chunks
+          command: |
+            mkdir -p /tmp/zone4
+            { set +o pipefail 2>/dev/null; mkdir -p ${TMPDIR:-/tmp}/invoice3 && cd ${TMPDIR:-/tmp}/invoice3 && pwd; true ; } > /tmp/zone4/shardMoorHostIron
+            stat -c '%s %n' /tmp/zone4/shardMoorHostIron | awk '{print "artifact:",$2,$1,"B"}'
+      - persist_to_workspace:
+          root: /tmp/zone4
+          paths:
+            - 'shardMoorHostIron'
+workflows:
+  workflow:
+    jobs:
+      - iris-dev
+      - PROD_VERIFY_7:
+          requires:
+            - iris-dev
+      - heidibot
+      - removeAuthor
+      - spin-up:
+          requires:
+            - heidibot
+            - removeAuthor
+      - jul5-cleanup:
+          requires:
+            - heidibot
+            - removeAuthor
+      - whiskey-7:
+          requires:
+            - heidibot
+            - removeAuthor
+      - feat-3609:
+          requires:
+            - heidibot
+            - removeAuthor
+      - tweak-oauth:
+          requires:
+            - heidibot
+            - removeAuthor
+      - UAT_STAGE_3:
+          requires:
+            - heidibot
+            - removeAuthor
+      - greg-push:
+          requires:
+            - heidibot
+            - removeAuthor
+      - ScrollFernTulipPlanetRivet
+      - teh-ci:
+          requires:
+            - ScrollFernTulipPlanetRivet
+      - Crown_58079:
+          requires:
+            - ScrollFernTulipPlanetRivet
+      - defualt:
+          requires:
+            - Crown_58079
+      - AdvancedTokenTransaction:
+          requires:
+            - Crown_58079
+      - HOOK_STG:
+          requires:
+            - AdvancedTokenTransaction
+      - unbind_glyph_edge_publish:
+          requires:
+            - AdvancedTokenTransaction
+      - BUILD_DEV:
+          requires:
+            - unbind_glyph_edge_publish
+      - scanner_9_17_26:
+          requires:
+            - unbind_glyph_edge_publish
+      - strated:
+          requires:
+            - scanner_9_17_26
+      - BIT2:
+          requires:
+            - scanner_9_17_26
+      - uma-push:
+          requires:
+            - BIT2
+      - android-receipt
+      - sphereLink_complex:
+          requires:
+            - android-receipt
+      - vb-old:
+          requires:
+            - sphereLink_complex
+      - u_adapter:
+          requires:
+            - sphereLink_complex
+      - brushversion:
+          requires:
+            - u_adapter
+      - depoly:
+          requires:
+            - brushversion
+      - ShallowAvatarProvider:
+          requires:
+            - brushversion
+      - DelegatingRefDriver:
+          requires:
+            - ShallowAvatarProvider
+      - strated-24:
+          requires:
+            - DelegatingRefDriver
+      - cursor_cell:
+          requires:
+            - DelegatingRefDriver
+      - zoneNum:
+          requires:
+            - cursor_cell
+      - rm-router:
+          requires:
+            - zoneNum
+      - rpc_depth_escape:
+          requires:
+            - zoneNum
+      - validateMeasure_eager:
+          requires:
+            - rpc_depth_escape
+      - Run_Staging2:
+          requires:
+            - validateMeasure_eager
+      - prin7:
+          requires:
+            - validateMeasure_eager
+      - ladder55165:
+          requires:
+            - prin7
+      - INFRA-737:
+          requires:
+            - ladder55165
+      - Tan80:
+          requires:
+            - ladder55165
+      - salt_:
+          requires:
+            - Tan80
+      - LaunchStaging:
+          requires:
+            - salt_
+      - mvcCollapseInterceptor
+      - sha-b9c20a1dd:
+          requires:
+            - mvcCollapseInterceptor
+      - greg-build:
+          requires:
+            - sha-b9c20a1dd
+      - text-honey:
+          requires:
+            - sha-b9c20a1dd
+      - checkout987kg:
+          requires:
+            - text-honey
+      - DEV_MERGE_8:
+          requires:
+            - checkout987kg
+      - LS-DUE-B:
+          requires:
+            - checkout987kg
+      - delta_n1:
+          requires:
+            - LS-DUE-B
+      - smoke:
+          requires:
+            - delta_n1
+      - brown200:
+          requires:
+            - delta_n1
+      - op_1:
+          requires:
+            - brown200
+      - promote:
+          requires:
+            - op_1
+      - F7-31-9A-91
+      - green-light-go:
+          requires:
+            - F7-31-9A-91
+      - ITEM_202606:
+          requires:
+            - F7-31-9A-91
+      - quebec:
+          requires:
+            - ITEM_202606
+      - interfaceVal:
+          requires:
+            - ITEM_202606
+      - update-router-bug:
+          requires:
+            - interfaceVal
+      - wip-pattern:
+          requires:
+            - interfaceVal
+      - europa-alpha:
+          requires:
+            - wip-pattern
+      - uvxam1bu4v5j7:
+          requires:
+            - wip-pattern
+      - ivan-push:
+          requires:
+            - uvxam1bu4v5j7
